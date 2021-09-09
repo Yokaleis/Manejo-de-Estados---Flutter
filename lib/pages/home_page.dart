@@ -1,5 +1,10 @@
+
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:app_estados_flutter/bloc/usuario/usuario_bloc.dart';
+
+import 'package:app_estados_flutter/models/usuario_models.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -8,8 +13,25 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
+        actions: [
+          IconButton(onPressed: (){
+            BlocProvider.of<UsuarioBloc>(context).add( BorrarUsuario() );
+          }, 
+          icon: Icon(Icons.delete),
+          ),
+        ],
       ),
-      body: InformacionUsuario(),
+      body: BlocBuilder<UsuarioBloc, UsuarioState>(
+        builder: (_, state){
+         if( state.existeUsuario ){
+           return InformacionUsuario( usuario: state.usuario! );
+         }else {
+           return Center(
+             child: Text('No hay usuario por ahora'),
+           );
+         }
+        },
+      ),
      floatingActionButton: FloatingActionButton(
        child: Icon (Icons.add),
        onPressed: () => Navigator.pushNamed(context, 'buttoms'),
@@ -19,7 +41,10 @@ class HomePage extends StatelessWidget {
 }
 
 class InformacionUsuario extends StatelessWidget {
+ 
+  final Usuario usuario;
 
+  const InformacionUsuario({required this.usuario});
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +63,10 @@ class InformacionUsuario extends StatelessWidget {
           Divider(),
 
           ListTile(
-            title: Text('Nnombre:'),
+            title: Text('Nnombre: ${ usuario.nombre }'),
           ),
           ListTile(
-            title: Text('Edad:'),
+            title: Text('Edad: ${ usuario.edad }'),
           ),
 
           Text('Habilidades',
@@ -53,14 +78,11 @@ class InformacionUsuario extends StatelessWidget {
 
           Divider(),
 
-          ListTile(
-            title: Text('UXUI Diesigner'),
-          ),
-          ListTile(
-            title: Text('FrontEnd'),
-          ),
+          ...usuario.habilidades.map(
+            (habilidades) => ListTile( title: Text(habilidades)) ).toList()
         ],
       ),
     );
   }
+
 }
