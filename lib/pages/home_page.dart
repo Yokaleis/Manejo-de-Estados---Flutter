@@ -8,6 +8,11 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
+        actions: [
+          IconButton(onPressed: (){}, 
+          icon: Icon(Icons.delete),
+          ),
+        ],
       ),
       body: InformacionUsuario(),
      floatingActionButton: FloatingActionButton(
@@ -38,25 +43,23 @@ class InformacionUsuario extends StatelessWidget {
           ),
           SizedBox(height: 5,),
           Text('Esta es la información suministrada por usted.'),
-
           Divider(),
-
           ListTile(
             title: Text('Nombre:'),
           ),
           ListTile(
             title: Text('Edad:'),
           ),
-
+          Divider(),
+          SizedBox(height: 25,),
           Text('Habilidades',
           style:  TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
           ),
-
-          Divider(),
-
+          SizedBox(height: 5,),
+          Text('Usted cuenta actualmente con todas estas habilidades.'),
           ListTile(
             title: Text('UXUI Diesigner'),
           ),
