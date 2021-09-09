@@ -9,7 +9,9 @@ class ButtomsPage extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon( Icons.arrow_back),
-          onPressed: (){}, 
+          onPressed: (){
+            Navigator.pushNamed(context, 'homepage');
+          }, 
           ),
         title: Text('Botones'),
       ),

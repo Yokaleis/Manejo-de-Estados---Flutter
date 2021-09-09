@@ -24,21 +24,25 @@ class InformacionUsuario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
       height: double.infinity,
       width: double.infinity,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Informaci[on General',
+          Text('Información General',
           style:  TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
           ),
+          SizedBox(height: 5,),
+          Text('Esta es la información suministrada por usted.'),
 
           Divider(),
 
           ListTile(
-            title: Text('Nnombre:'),
+            title: Text('Nombre:'),
           ),
           ListTile(
             title: Text('Edad:'),
