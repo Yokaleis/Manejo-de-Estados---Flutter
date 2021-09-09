@@ -49,9 +49,11 @@ class InformacionUsuario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
       height: double.infinity,
       width: double.infinity,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Informaci[on General',
           style:  TextStyle(
@@ -59,7 +61,8 @@ class InformacionUsuario extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
           ),
-
+          SizedBox(height: 5,),
+          Text('Esta es la información suministrada por usted.'),
           Divider(),
 
           ListTile(
@@ -68,16 +71,16 @@ class InformacionUsuario extends StatelessWidget {
           ListTile(
             title: Text('Edad: ${ usuario.edad }'),
           ),
-
+          Divider(),
+          SizedBox(height: 25,),
           Text('Habilidades',
           style:  TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
           ),
-
-          Divider(),
-
+          SizedBox(height: 5,),
+          Text('Usted cuenta actualmente con todas estas habilidades.'),
           ...usuario.habilidades.map(
             (habilidades) => ListTile( title: Text(habilidades)) ).toList()
         ],
